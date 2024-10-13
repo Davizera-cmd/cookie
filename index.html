@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cookie Consent Example</title>
+  <style>
+    .cookieConsentContainer {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #232323;
+      color: white;
+      padding: 20px;
+      display: none;
+      z-index: 999;
+      border-radius: 5px;
+    }
+    .cookieConsentContainer button {
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+</head>
+<body>
+  <div class="cookieConsentContainer" id="cookieConsentContainer">
+    <p>We use cookies to improve your experience. By using our site, you accept cookies.</p>
+    <button onclick="acceptCookies()">Accept</button>
+  </div>
+
+  <script>
+    function acceptCookies() {
+      Cookies.set('cookieConsent', 'accepted', { expires: 7 });
+      console.log("Cookie definido: ", Cookies.get('cookieConsent')); // Verifica o cookie no console
+      document.getElementById("cookieConsentContainer").style.display = "none";
+    }
+
+    window.onload = function() {
+      if (!Cookies.get('cookieConsent')) {
+        document.getElementById("cookieConsentContainer").style.display = "block";
+      } else {
+        console.log("Cookie já existe: ", Cookies.get('cookieConsent'));
+      }
+    };
+  </script>
+</body>
+</html>
